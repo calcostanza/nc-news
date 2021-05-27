@@ -4,12 +4,9 @@ import { AddVote } from '../utils/api';
 
 const VoteArticle = ({ votes, article_id }) => {
   const [votesChange, setVotesChange] = useState(0);
-  const incVotes = (event) => {
-    event.preventDefault();
-    AddVote(article_id, { inc_vote: votesChange }).then((response) => {
-      setVotesChange((currVotes) => currVotes + 1
-      return { ...currVotes, response };
-    });
+  const incVotes = () => {
+    setVotesChange((currVotes) => currVotes + 1);
+    AddVote(article_id, { inc_votes: 1 }).catch((err) => console.log(err));
   };
 
   return (
@@ -20,7 +17,3 @@ const VoteArticle = ({ votes, article_id }) => {
   );
 };
 export default VoteArticle;
-
-// likes don't match the articles likes
-
-// {inc_votes : 1 }

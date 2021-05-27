@@ -5,19 +5,25 @@ import VoteArticle from './VoteArticle';
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
+  const [sortOrder, setSortOrder] = useState('desc');
+  const [sortByQuery, setSortByQuery] = useState('created_at');
   const { urlTopic } = useParams();
 
   useEffect(() => {
-    getArticles(urlTopic).then((articlesFromApi) => {
+    getArticles(urlTopic, sortOrder, sortByQuery).then((articlesFromApi) => {
       setArticles(articlesFromApi);
     });
-  }, [urlTopic]);
+  }, [urlTopic, sortOrder, sortByQuery]);
 
   return (
     <div className="articles">
-      {articles.map((articles) => {
+      <button onClick={() => setSortOrder('asc')}>Sort by ascending</button>
+      <button onClick={() => setSortOrder('desc')}>Sort by descending</button>
+      <button onClick={() => setSortByQuery('topic')}>Sort by Topic</button>
+      <button onClick={() => setSortByQuery('votes')}>Sort by Likes</button>
+      {articles.map((article) => {
         const { article_id, title, votes, author, comment_count, created_at } =
-          articles;
+          article;
         return (
           <div className="article--section" key={article_id}>
             <Link to={`/articles/${article_id}`}>
@@ -27,7 +33,7 @@ const Articles = () => {
                 <p>Comments: {comment_count}</p>
               </section>
             </Link>
-            <VoteArticle votes={votes} articles={articles} />
+            <VoteArticle article_id={article_id} votes={votes} />
             <p>{created_at}</p>
           </div>
         );
@@ -37,3 +43,6 @@ const Articles = () => {
 };
 
 export default Articles;
+
+// sort articles by:
+// comment_count

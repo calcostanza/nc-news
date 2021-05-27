@@ -23,6 +23,7 @@ const AddComment = ({ article_id, user, setComments }) => {
           type="text"
           value={newComment}
           onChange={(event) => setNewComment(event.target.value)}
+          required
         ></input>
         <button>Add Comment</button>
       </form>
