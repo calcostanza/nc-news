@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #ffcdc6;
 }
 
 .App-logo {
@@ -35,4 +36,32 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.Header {
+  background: #fd7d6c;
+  padding: 0.3em;
+}
+
+.nav--topic {
+  list-style-type: none;
+  display: inline-block;
+  padding: 0.5em;
+}
+
+ul {
+  padding-left: 0;
+  margin-top: auto;
+  background: rgb(208, 221, 255);
+}
+
+.article--section {
+  background-color: white;
+  border-radius: 10px;
+  margin-left: 0.3em;
+  margin-right: 0.3em;
+}
+
+@media only screen and (max-width: 600px) {
+  margin-left: 15em;
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getArticles } from '../utils/api';
 import { Link, useParams } from 'react-router-dom';
+import VoteArticle from './VoteArticle';
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
@@ -18,15 +19,17 @@ const Articles = () => {
         const { article_id, title, votes, author, comment_count, created_at } =
           articles;
         return (
-          <Link to={`/articles/${article_id}`} key={article_id}>
-            <section className="article--section">
-              <p>Posted by: {author}</p>
-              <h2>{title}</h2>
-              <p>Comments: {comment_count}</p>
-              <p>Votes: {votes}</p>
-              <p>{created_at}</p>
-            </section>
-          </Link>
+          <div className="article--section" key={article_id}>
+            <Link to={`/articles/${article_id}`}>
+              <section>
+                <p>Posted by: {author}</p>
+                <h2>{title}</h2>
+                <p>Comments: {comment_count}</p>
+              </section>
+            </Link>
+            <VoteArticle votes={votes} articles={articles} />
+            <p>{created_at}</p>
+          </div>
         );
       })}
     </div>

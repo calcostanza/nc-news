@@ -30,7 +30,11 @@ export const getArticleComments = async (article_id) => {
 };
 
 export const postComment = async (article_id, body) => {
-  // const commentbody = { body: `${body}` };
-  const { data } = await newsApi.post(`/articles/${article_id}/comments`);
-  return data.comments;
+  const { data } = await newsApi.post(`/articles/${article_id}/comments`, body);
+  return data.comment;
+};
+
+export const AddVote = async (article_id, votes) => {
+  const { data } = await newsApi.patch(`/articles/${article_id}`, votes);
+  return data.article;
 };

@@ -1,23 +1,32 @@
-import logo from './logo.svg';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { useState } from 'react';
 import './App.css';
+import Home from './components/Home';
+import User from './components/User';
+import Nav from './components/Nav';
+import Articles from './components/Articles';
+import SingleArticle from './components/SingleArticle';
 
 function App() {
+  const [user] = useState({ username: 'tickle122' });
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Home />
+        <User user={user} />
+        <Nav />
+        <Switch>
+          <Route exact path="/">
+            <Articles />
+          </Route>
+          <Route exact path="/topic/:urlTopic">
+            <Articles />
+          </Route>
+          <Route exact path="/articles/:article_id">
+            <SingleArticle user={user} />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
