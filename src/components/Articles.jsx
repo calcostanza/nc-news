@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getArticles } from '../utils/api';
 import { Link, useParams } from 'react-router-dom';
-import VoteArticle from './VoteArticle';
 
 const Articles = () => {
   const [error, setError] = useState(false);
@@ -30,19 +29,22 @@ const Articles = () => {
       <button onClick={() => setSortByQuery('votes')}>Sort by Likes</button>
       <button onClick={() => setSortByQuery('created_at')}>Sort by Date</button>
       {articles.map((article) => {
-        const { article_id, title, votes, author, comment_count, created_at } =
+        const { article_id, title, author, comment_count, created_at, body } =
           article;
         return (
           <div className="article--section" key={article_id}>
-            <Link to={`/articles/${article_id}`}>
+            <Link to={`/articles/${article_id}`} className="Article--Main">
               <section>
-                <p>Posted by: {author}</p>
-                <h2>{title}</h2>
+                <h2 className="Article--title">{title}</h2>
+                <p className="article__preview">{`${body.substr(
+                  0,
+                  100
+                )}...`}</p>
                 <p>Comments: {comment_count}</p>
               </section>
             </Link>
-            <VoteArticle article_id={article_id} votes={votes} />
             <p>{created_at}</p>
+            <p>Posted by: {author}</p>
           </div>
         );
       })}

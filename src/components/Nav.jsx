@@ -15,6 +15,9 @@ const Nav = () => {
   return (
     <nav className="Nav">
       <ul>
+        <li className="nav--topic">
+          <Link to="/">Home</Link>
+        </li>
         {topics.map((topic) => {
           return (
             <li className="nav--topic" key={topic.slug}>

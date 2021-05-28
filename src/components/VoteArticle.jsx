@@ -11,7 +11,7 @@ const VoteArticle = ({ votes, article_id }) => {
 
   return (
     <div>
-      <p>Total likes: {votes + votesChange}</p>
+      <p>Likes: {votes + votesChange}</p>
       <button onClick={incVotes}>Like Article</button>
     </div>
   );
