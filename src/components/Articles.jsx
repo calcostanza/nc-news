@@ -4,23 +4,31 @@ import { Link, useParams } from 'react-router-dom';
 import VoteArticle from './VoteArticle';
 
 const Articles = () => {
+  const [error, setError] = useState(false);
   const [articles, setArticles] = useState([]);
   const [sortOrder, setSortOrder] = useState('desc');
   const [sortByQuery, setSortByQuery] = useState('created_at');
   const { urlTopic } = useParams();
 
   useEffect(() => {
-    getArticles(urlTopic, sortOrder, sortByQuery).then((articlesFromApi) => {
-      setArticles(articlesFromApi);
-    });
+    getArticles(urlTopic, sortOrder, sortByQuery)
+      .then((articlesFromApi) => {
+        setArticles(articlesFromApi);
+      })
+      .catch((err) => setError(true));
   }, [urlTopic, sortOrder, sortByQuery]);
+
+  if (error) {
+    return <h3>Topic not found!</h3>;
+  }
 
   return (
     <div className="articles">
-      <button onClick={() => setSortOrder('asc')}>Sort by ascending</button>
-      <button onClick={() => setSortOrder('desc')}>Sort by descending</button>
+      <button onClick={() => setSortOrder('asc')}>Sort by Ascending</button>
+      <button onClick={() => setSortOrder('desc')}>Sort by Descending</button>
       <button onClick={() => setSortByQuery('topic')}>Sort by Topic</button>
       <button onClick={() => setSortByQuery('votes')}>Sort by Likes</button>
+      <button onClick={() => setSortByQuery('created_at')}>Sort by Date</button>
       {articles.map((article) => {
         const { article_id, title, votes, author, comment_count, created_at } =
           article;
@@ -43,6 +51,3 @@ const Articles = () => {
 };
 
 export default Articles;
-
-// sort articles by:
-// comment_count

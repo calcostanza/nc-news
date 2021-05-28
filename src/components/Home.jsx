@@ -4,7 +4,7 @@ const Home = () => {
   return (
     <header className="Header">
       <h1>
-        <Link to="/">News APP Name</Link>
+        <Link to="/">TRENDING NEWS!</Link>
       </h1>
     </header>
   );
