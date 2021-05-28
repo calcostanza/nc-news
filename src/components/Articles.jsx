@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getArticles } from '../utils/api';
 import { Link, useParams } from 'react-router-dom';
+import moment from 'moment';
 
 const Articles = () => {
   const [error, setError] = useState(false);
@@ -14,7 +15,7 @@ const Articles = () => {
       .then((articlesFromApi) => {
         setArticles(articlesFromApi);
       })
-      .catch((err) => setError(true));
+      .catch(() => setError(true));
   }, [urlTopic, sortOrder, sortByQuery]);
 
   if (error) {
@@ -43,8 +44,10 @@ const Articles = () => {
                 <p>Comments: {comment_count}</p>
               </section>
             </Link>
-            <p>{created_at}</p>
-            <p>Posted by: {author}</p>
+            <ul className="Article--preview__footer">
+              <li>Posted by: {author}</li>
+              <li>{moment(created_at).fromNow()}</li>
+            </ul>
           </div>
         );
       })}

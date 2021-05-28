@@ -17,17 +17,15 @@ const AddComment = ({ article_id, user, setComments }) => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={newComment}
-          onChange={(event) => setNewComment(event.target.value)}
-          required
-        ></input>
-        <button>Add Comment</button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <textarea
+        type="text"
+        value={newComment}
+        onChange={(event) => setNewComment(event.target.value)}
+        required
+      ></textarea>
+      <button>Add Comment</button>
+    </form>
   );
 };
 

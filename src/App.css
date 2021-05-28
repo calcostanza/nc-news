@@ -63,18 +63,24 @@ ul {
   border-radius: 5px;
 }
 
-@media only screen and (max-width: 600px) {
-  margin-left: 15em;
-}
-
 .Article--Main {
   text-decoration: none;
   color: inherit;
 }
 
 .Article--title {
-  background-color: #ffe864;
   border-radius: 5px;
+  background-color: #ffe864;
   display: flex;
   padding: 0 0.2em 0 0.2em;
+}
+
+.Article--preview__footer {
+  width: 100%;
+  list-style-type: none;
+  display: inline-block;
+}
+
+.Article--preview__footer li {
+  display: inline-block;
 }
