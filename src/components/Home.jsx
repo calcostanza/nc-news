@@ -1,7 +1,7 @@
 const Home = () => {
   return (
     <header className="Header">
-      <h1>TRENDING NEWS!</h1>
+      <h1 className="Header--box">NEWS APP!</h1>
     </header>
   );
 };

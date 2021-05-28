@@ -30,17 +30,27 @@ const Articles = () => {
       <button onClick={() => setSortByQuery('votes')}>Sort by Likes</button>
       <button onClick={() => setSortByQuery('created_at')}>Sort by Date</button>
       {articles.map((article) => {
-        const { article_id, title, author, comment_count, created_at, body } =
-          article;
+        const {
+          article_id,
+          title,
+          author,
+          comment_count,
+          created_at,
+          body,
+          votes,
+        } = article;
         return (
           <div className="article--section" key={article_id}>
             <Link to={`/articles/${article_id}`} className="Article--Main">
-              <section>
-                <h2 className="Article--title">{title}</h2>
-                <p className="article__preview">{`${body.substr(
-                  0,
-                  100
-                )}...`}</p>
+              <h2 className="Article--title">{title}</h2>
+              <section className="Article--data">
+                <strong>
+                  <p className="Article__preview">{`${body.substr(
+                    0,
+                    100
+                  )}...`}</p>
+                </strong>
+                <p>Likes: {votes}</p>
                 <p>Comments: {comment_count}</p>
               </section>
             </Link>
