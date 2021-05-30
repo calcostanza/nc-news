@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-color: #e2f0e1;
+  background-color: #f7f7f7;
 }
 
 .App-logo {
@@ -77,16 +77,16 @@ ul {
 .Article--title {
   margin: 0 auto;
   background-color: #8cde85;
-  display: flex;
   padding: 0.5em 0.7em 0.5em 0.7em;
   border: solid #6ffc62 1px;
+  font-style: italic;
 }
 
 .Article--preview__footer {
   background-color: rgb(255, 255, 255);
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  padding: 10px 10px 10px 10px;
+  padding: 0.5em 0.7em 0.5em 0.7em;
   display: -webkit-flex;
   display: flex;
   -webkit-justify-content: space-between;
@@ -94,7 +94,10 @@ ul {
   font-size: 78%;
 }
 
-.Article--preview--top__footer {
+.Article--preview--top__footer,
+.single-article--list,
+.single--article--likes,
+.single--article--comments {
   border-top: 1px solid #dfe1e6;
   padding: 10px 10px 10px 10px;
   display: -webkit-flex;
@@ -108,6 +111,49 @@ ul {
   padding: 0 0.7em 0 0.7em;
 }
 
+/* Single Article */
+
+.single--article--section h2 {
+  text-align: center;
+  padding: 0 1em 0 1em;
+}
+
+.single--article--section {
+  text-align: left;
+}
+
+.single--article--body {
+  padding: 0 1em 1em 1em;
+}
+
+.single-article--list {
+  border-bottom: 1px solid #dfe1e6;
+}
+
+.single--article--likes {
+}
+
+/* Single Article Comments */
+
+.single--article--comments {
+  text-align: left;
+  padding: 0 2em 0 2em;
+  background-color: white;
+}
+
+.single--article--addcomment {
+  background: white;
+  padding: 1em 0.5em 2em 1em;
+}
+
+textarea {
+  margin-top: 0em;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  height: 5em;
+}
 /* Button Styling */
 
 .btn-group .nav--button {

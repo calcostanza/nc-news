@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { getArticleComments } from '../utils/api';
 import { useParams } from 'react-router';
+import moment from 'moment';
 
 const Comments = ({ comments, setComments }) => {
   const { article_id } = useParams();
@@ -12,18 +13,26 @@ const Comments = ({ comments, setComments }) => {
   }, [article_id, setComments]);
 
   return (
-    <ul>
-      {comments.map((comment) => {
-        return (
-          <li key={comment.comment_id} className="commentsList">
-            <p>Posted by: {comment.author}</p>
-            <p>Posted: {comment.created_at}</p>
-            <p>{comment.body}</p>
-            <p>Likes: {comment.votes}</p>
-          </li>
-        );
-      })}
-    </ul>
+    <section>
+      <ul>
+        {comments.map((comment) => {
+          return (
+            <div className="single--article--comments">
+              <li key={comment.comment_id} className="commentsList">
+                <p>
+                  <strong>{comment.author}</strong> posted{' '}
+                  {moment(comment.created_at).fromNow()}
+                </p>
+                <p>{comment.body}</p>
+                <p>
+                  <strong>Likes:</strong> {comment.votes}
+                </p>
+              </li>
+            </div>
+          );
+        })}
+      </ul>
+    </section>
   );
 };
 
