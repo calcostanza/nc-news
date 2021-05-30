@@ -13,14 +13,14 @@ const Nav = () => {
   }, []);
 
   return (
-    <nav className="Nav">
+    <nav className="Nav btn-group">
       <ul>
-        <li className="nav--topic">
+        <li className="nav--topic nav--button">
           <Link to="/">Home</Link>
         </li>
         {topics.map((topic) => {
           return (
-            <li className="nav--topic" key={topic.slug}>
+            <li className="nav--topic nav--button " key={topic.slug}>
               <Link to={`/topic/${topic.slug}`}>
                 {capitalizeTheFirstLetterOfEachWord(topic.slug)}
               </Link>

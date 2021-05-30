@@ -24,11 +24,15 @@ const Articles = () => {
 
   return (
     <div className="articles">
-      <button onClick={() => setSortOrder('asc')}>Sort by Ascending</button>
-      <button onClick={() => setSortOrder('desc')}>Sort by Descending</button>
-      <button onClick={() => setSortByQuery('topic')}>Sort by Topic</button>
-      <button onClick={() => setSortByQuery('votes')}>Sort by Likes</button>
-      <button onClick={() => setSortByQuery('created_at')}>Sort by Date</button>
+      <div>
+        <button onClick={() => setSortOrder('asc')}>Sort by Ascending</button>
+        <button onClick={() => setSortOrder('desc')}>Sort by Descending</button>
+        <button onClick={() => setSortByQuery('topic')}>Sort by Topic</button>
+        <button onClick={() => setSortByQuery('votes')}>Sort by Likes</button>
+        <button onClick={() => setSortByQuery('created_at')}>
+          Sort by Date
+        </button>{' '}
+      </div>
       {articles.map((article) => {
         const {
           article_id,
@@ -41,6 +45,10 @@ const Articles = () => {
         } = article;
         return (
           <div className="article--section" key={article_id}>
+            <ul className="Article--preview__footer">
+              <li>Posted by: {author}</li>
+              <li>{moment(created_at).fromNow()}</li>
+            </ul>
             <Link to={`/articles/${article_id}`} className="Article--Main">
               <h2 className="Article--title">{title}</h2>
               <section className="Article--data">
@@ -50,13 +58,11 @@ const Articles = () => {
                     100
                   )}...`}</p>
                 </strong>
-                <p>Likes: {votes}</p>
-                <p>Comments: {comment_count}</p>
               </section>
             </Link>
-            <ul className="Article--preview__footer">
-              <li>Posted by: {author}</li>
-              <li>{moment(created_at).fromNow()}</li>
+            <ul className="Article--preview--top__footer">
+              <li>Comments: {comment_count}</li>
+              <li>Likes: {votes}</li>
             </ul>
           </div>
         );
