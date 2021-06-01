@@ -5,6 +5,7 @@ import moment from 'moment';
 
 const Articles = () => {
   const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [articles, setArticles] = useState([]);
   const [sortOrder, setSortOrder] = useState('desc');
   const [sortByQuery, setSortByQuery] = useState('created_at');
@@ -14,6 +15,7 @@ const Articles = () => {
     getArticles(urlTopic, sortOrder, sortByQuery)
       .then((articlesFromApi) => {
         setArticles(articlesFromApi);
+        setIsLoading(false);
       })
       .catch(() => setError(true));
   }, [urlTopic, sortOrder, sortByQuery]);
@@ -21,6 +23,8 @@ const Articles = () => {
   if (error) {
     return <h3>Topic not found!</h3>;
   }
+
+  if (isLoading) return <p>Loading...</p>;
 
   return (
     <div className="articles">

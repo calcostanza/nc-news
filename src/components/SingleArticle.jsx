@@ -7,6 +7,7 @@ import VoteArticle from './VoteArticle';
 import moment from 'moment';
 
 const SingleArticle = ({ user }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [article, setArticle] = useState({});
   const [comments, setComments] = useState([]);
   const { article_id } = useParams();
@@ -14,8 +15,11 @@ const SingleArticle = ({ user }) => {
   useEffect(() => {
     getSingleArticle(article_id).then((articlesFromApi) => {
       setArticle(articlesFromApi);
+      setIsLoading(false);
     });
   }, [article_id]);
+
+  if (isLoading) return <p>Loading...</p>;
 
   return (
     <article>

@@ -4,13 +4,17 @@ import { Link } from 'react-router-dom';
 const { capitalizeTheFirstLetterOfEachWord } = require('../utils/functions');
 
 const Nav = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [topics, setTopics] = useState([]);
 
   useEffect(() => {
     getTopics().then((topicsFromApi) => {
       setTopics(topicsFromApi);
+      setIsLoading(false);
     });
   }, []);
+
+  if (isLoading) return <p>Loading...</p>;
 
   return (
     <nav className="Nav btn-group">
