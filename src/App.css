@@ -183,3 +183,25 @@ textarea {
 .btn-group {
   padding-bottom: 2em;
 }
+
+@media (min-width: 850px) {
+  .articles {
+    margin: 2em auto;
+    width: min(90%, 70em);
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+  }
+
+  .article--section {
+    height: fit-content;
+  }
+
+  .single--article--body,
+  .single--article--comments,
+  .single--article--addcomment,
+  .single--article--section {
+    width: 600px;
+    display: inline-block;
+    background-color: #f7f7f7;
+  }
+}

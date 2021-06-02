@@ -17,8 +17,8 @@ const Comments = ({ comments, setComments }) => {
       <ul>
         {comments.map((comment) => {
           return (
-            <div className="single--article--comments">
-              <li key={comment.comment_id} className="commentsList">
+            <div key={comment.comment_id} className="single--article--comments">
+              <li className="commentsList">
                 <p>
                   <strong>{comment.author}</strong> posted{' '}
                   {moment(comment.created_at).fromNow()}

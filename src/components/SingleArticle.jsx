@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useParams, useHistory } from 'react-router-dom';
 import { getSingleArticle } from '../utils/api';
 import Comments from './Comments';
 import AddComment from './AddComment';
@@ -8,16 +8,36 @@ import moment from 'moment';
 
 const SingleArticle = ({ user }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
   const [article, setArticle] = useState({});
   const [comments, setComments] = useState([]);
   const { article_id } = useParams();
+  const history = useHistory();
 
   useEffect(() => {
-    getSingleArticle(article_id).then((articlesFromApi) => {
-      setArticle(articlesFromApi);
-      setIsLoading(false);
-    });
+    getSingleArticle(article_id)
+      .then((articlesFromApi) => {
+        setArticle(articlesFromApi);
+        setIsLoading(false);
+      })
+      .catch(() => setError(true));
   }, [article_id]);
+
+  if (error) {
+    return (
+      <>
+        <h3>Article not found!</h3>
+        <button
+          onClick={() => {
+            setError(false);
+            history.push('/');
+          }}
+        >
+          Reset search
+        </button>
+      </>
+    );
+  }
 
   if (isLoading) return <p>Loading...</p>;
 

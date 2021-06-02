@@ -6,6 +6,7 @@ import User from './components/User';
 import Nav from './components/Nav';
 import Articles from './components/Articles';
 import SingleArticle from './components/SingleArticle';
+import Footer from './components/Footer';
 
 function App() {
   const [user] = useState({ username: 'tickle122' });
@@ -26,6 +27,7 @@ function App() {
             <SingleArticle user={user} />
           </Route>
         </Switch>
+        <Footer />
       </Router>
     </div>
   );
